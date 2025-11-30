@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cts2vrg5emns3"
+path="res://.godot/imported/corrected gun shot.mp3-f43d3fb0551de9e19e2c76a6d52adbe7.mp3str"
+
+[deps]
+
+source_file="res://Sounds/corrected gun shot.mp3"
+dest_files=["res://.godot/imported/corrected gun shot.mp3-f43d3fb0551de9e19e2c76a6d52adbe7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

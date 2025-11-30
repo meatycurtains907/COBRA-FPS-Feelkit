@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/feel_player.gd" id="1_feelplayer"]
+[ext_resource type="Script" path="res://scripts/player/weapon_rig.gd" id="2_weaponrig"]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_base.gd" id="3_weaponbase"]
+[ext_resource type="Resource" path="res://config/Rifle_Twitchy.tres" id="4_rifletwitchy"]
+[ext_resource type="Script" path="res://scripts/weapons/melee_weapon.gd" id="5_meleeweapon"]
+[ext_resource type="Resource" path="res://config/MeleeConfig.tres" id="6_meleeconfig"]
+[ext_resource type="Script" path="res://scripts/player/recoil_controller.gd" id="7_recoilcontroller"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/RifleModel.tscn" id="8_riflemodel"]
+[ext_resource type="Resource" path="res://config/Feel_Default.tres" id="9_feeldefault"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.5
+height = 2.0
+
+[node name="FeelPlayer" type="CharacterBody3D"]
+script = ExtResource("1_feelplayer")
+feel_config = ExtResource("9_feeldefault")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="RecoilPivot" type="Node3D" parent="."]
+script = ExtResource("7_recoilcontroller")
+
+[node name="Camera3D" type="Camera3D" parent="RecoilPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+
+[node name="WeaponRig" type="Node3D" parent="RecoilPivot/Camera3D"]
+script = ExtResource("2_weaponrig")
+active_weapon = NodePath("Weapon")
+
+[node name="Weapon" type="Node3D" parent="RecoilPivot/Camera3D/WeaponRig"]
+script = ExtResource("3_weaponbase")
+config = ExtResource("4_rifletwitchy")
+aim_node_path = NodePath("../..")
+muzzle_node_path = NodePath("Muzzle")
+
+[node name="Muzzle" type="Node3D" parent="RecoilPivot/Camera3D/WeaponRig/Weapon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+
+[node name="RifleModel" parent="RecoilPivot/Camera3D/WeaponRig/Weapon" instance=ExtResource("8_riflemodel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.35, 0.4)
+
+[node name="MeleeWeapon" type="Node3D" parent="RecoilPivot/Camera3D"]
+script = ExtResource("5_meleeweapon")
+config = ExtResource("6_meleeconfig")
+aim_node_path = NodePath("..")
+sword_node_path = NodePath("../WeaponRig/Weapon/SwordWeapon")
+
+[node name="SfxPlayer" type="AudioStreamPlayer3D" parent="RecoilPivot/Camera3D/MeleeWeapon"]

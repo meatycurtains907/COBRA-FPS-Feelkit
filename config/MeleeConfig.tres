@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MeleeConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/melee_config.gd" id="1_meleeconfig"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/melee-attack-with-voice-1-104995.mp3" id="2_swingsfx"]
+
+[resource]
+script = ExtResource("1_meleeconfig")
+display_name = "Training Sword"
+damage = 40.0
+melee_range = 2.0
+swing_time = 0.2
+recovery_time = 0.4
+hitbox_radius = 1.0
+swing_sfx = ExtResource("2_swingsfx")
+

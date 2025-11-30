@@ -1,0 +1,207 @@
+[gd_scene load_steps=25 format=3 uid="uid://b8h7kxp9q3r5n"]
+
+[ext_resource type="PackedScene" path="res://scenes/FeelPlayer.tscn" id="1_feelplayer"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/TrainingTarget.tscn" id="3_trainingtarget"]
+[ext_resource type="PackedScene" path="res://scenes/props/SandbagRow.tscn" id="4_sandbagrow"]
+[ext_resource type="PackedScene" path="res://scenes/props/CrateStack.tscn" id="5_cratestack"]
+[ext_resource type="PackedScene" path="res://scenes/props/BarrelCluster.tscn" id="6_barrelcluster"]
+[ext_resource type="Script" path="res://scripts/demo/magic_showcase.gd" id="7_magicshowcase"]
+[ext_resource type="PackedScene" path="res://scenes/demo/DebugOverlay.tscn" id="900_debug_overlay"]
+[ext_resource type="Script" path="res://scripts/demo/demo_player_health.gd" id="10_demoplayerhealth"]
+[ext_resource type="Resource" path="res://materials/Floor_Default.tres" id="11_floor_material"]
+[ext_resource type="Resource" path="res://materials/Wall_Default.tres" id="12_wall_material"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+
+[sub_resource type="Sky" id="Sky_showcase"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_showcase"]
+background_mode = 2
+sky = SubResource("Sky_showcase")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.6
+ambient_light_sky_contribution = 1.0
+fog_enabled = true
+fog_density = 0.002
+fog_sky_affect = 0.1
+fog_light_affect = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_range_floor"]
+size = Vector3(40, 0.5, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_range_floor"]
+size = Vector3(40, 0.5, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_side_wall"]
+size = Vector3(0.5, 5, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_side_wall"]
+size = Vector3(0.5, 5, 80)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_back_wall"]
+size = Vector3(40, 5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_back_wall"]
+size = Vector3(40, 5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_safe_wall"]
+size = Vector3(40, 1.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_safe_wall"]
+size = Vector3(40, 1.5, 0.5)
+
+[node name="MagicShowcase" type="Node3D"]
+script = ExtResource("7_magicshowcase")
+magic_hand_path = NodePath("FeelPlayer/RecoilPivot/Camera3D/MagicHandL")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_showcase")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(50.0, 30.0, 0.0)
+light_color = Color(1.0, 0.97, 0.94, 1.0)
+light_energy = 1.6
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="RangeFloor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RangeFloor"]
+shape = SubResource("BoxShape3D_range_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RangeFloor"]
+mesh = SubResource("BoxMesh_range_floor")
+surface_material_override/0 = ExtResource("11_floor_material")
+
+[node name="LeftWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall"]
+shape = SubResource("BoxShape3D_side_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftWall"]
+mesh = SubResource("BoxMesh_side_wall")
+surface_material_override/0 = ExtResource("12_wall_material")
+
+[node name="RightWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 2.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall"]
+shape = SubResource("BoxShape3D_side_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightWall"]
+mesh = SubResource("BoxMesh_side_wall")
+surface_material_override/0 = ExtResource("12_wall_material")
+
+[node name="BackWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall"]
+shape = SubResource("BoxShape3D_back_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackWall"]
+mesh = SubResource("BoxMesh_back_wall")
+surface_material_override/0 = ExtResource("12_wall_material")
+
+[node name="SafeWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, -40)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SafeWall"]
+shape = SubResource("BoxShape3D_safe_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SafeWall"]
+mesh = SubResource("BoxMesh_safe_wall")
+surface_material_override/0 = ExtResource("12_wall_material")
+
+[node name="FeelPlayer" parent="." instance=ExtResource("1_feelplayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -30)
+enable_block = true
+enable_fire = false
+fire_triggers_melee = true
+aim_triggers_magic = true
+
+[node name="Health" type="StaticBody3D" parent="FeelPlayer"]
+script = ExtResource("10_demoplayerhealth")
+max_health = 100.0
+block_damage_scale = 0.4
+
+[node name="MagicHandL" type="Node3D" parent="FeelPlayer/RecoilPivot/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, -0.1, 0.25)
+
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+player_path = NodePath("FeelPlayer")
+show_block_hint = true
+
+[node name="DebugOverlay" parent="." instance=ExtResource("900_debug_overlay")]
+layout_mode = 3
+player_path = NodePath("FeelPlayer")
+profile_manager_path = NodePath("")
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="SandbagRow_Left" parent="Props" instance=ExtResource("4_sandbagrow")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4, 0, -18)
+
+[node name="SandbagRow_Right" parent="Props" instance=ExtResource("4_sandbagrow")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 0, -18)
+
+[node name="CrateStack" parent="Props" instance=ExtResource("5_cratestack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.6, -22)
+
+[node name="BarrelCluster" parent="Props" instance=ExtResource("6_barrelcluster")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, -24)
+
+[node name="Targets" type="Node3D" parent="."]
+
+[node name="Lane1_Close" type="Node3D" parent="Targets"]
+
+[node name="Target1" parent="Targets/Lane1_Close" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -10)
+
+[node name="Target2" parent="Targets/Lane1_Close" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Target3" parent="Targets/Lane1_Close" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
+
+[node name="Lane2_Mid" type="Node3D" parent="Targets"]
+
+[node name="Target1" parent="Targets/Lane2_Mid" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Target2" parent="Targets/Lane2_Mid" instance=ExtResource("3_trainingtarget")]
+
+[node name="Target3" parent="Targets/Lane2_Mid" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Target4" parent="Targets/Lane2_Mid" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 5)
+
+[node name="Lane3_Far" type="Node3D" parent="Targets"]
+
+[node name="Target1" parent="Targets/Lane3_Far" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 15)
+
+[node name="Target2" parent="Targets/Lane3_Far" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="Target3" parent="Targets/Lane3_Far" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 15)
+
+[node name="Target4" parent="Targets/Lane3_Far" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 20)
+
+[node name="Target5" parent="Targets/Lane3_Far" instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 20)
+
+[node name="ShowcaseTitle" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 35)
+text = "Cobra Magic/Melee Showcase"
+font_size = 120
+outline_size = 40
+billboard = 1
+

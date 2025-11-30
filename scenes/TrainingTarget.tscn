@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/demo/training_target.gd" id="1_trainingtarget"]
+[ext_resource type="Resource" path="res://materials/Target_Front_Default.tres" id="2_target_front"]
+[ext_resource type="Resource" path="res://materials/Target_Base_Default.tres" id="3_target_base"]
+[ext_resource type="Resource" path="res://materials/Target_Body_Default.tres" id="4_target_body"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
+size = Vector3(0.7, 2.0, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+size = Vector3(0.6, 0.2, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lower_body"]
+size = Vector3(0.4, 0.6, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_torso"]
+size = Vector3(0.5, 0.95, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_head"]
+size = Vector3(0.3, 0.4, 0.2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_front_panel"]
+size = Vector2(0.5, 1.0)
+
+[node name="TrainingTarget" type="StaticBody3D"]
+script = ExtResource("1_trainingtarget")
+max_health = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0, 0)
+shape = SubResource("BoxShape3D_target")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Base" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_base")
+surface_material_override/0 = ExtResource("3_target_base")
+
+[node name="LowerBody" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_lower_body")
+surface_material_override/0 = ExtResource("4_target_body")
+
+[node name="Torso" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+mesh = SubResource("BoxMesh_torso")
+surface_material_override/0 = ExtResource("4_target_body")
+
+[node name="Head" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.625, 0)
+mesh = SubResource("BoxMesh_head")
+surface_material_override/0 = ExtResource("4_target_body")
+
+[node name="FrontPanel" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.875, 0.16)
+mesh = SubResource("PlaneMesh_front_panel")
+surface_material_override/0 = ExtResource("2_target_front")

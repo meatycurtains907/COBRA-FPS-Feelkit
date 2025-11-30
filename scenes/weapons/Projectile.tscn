@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/projectile.gd" id="1_projectile"]
+[ext_resource type="Material" path="res://materials/Fireball_Material.tres" id="2_fireball_material"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/fireball-whoosh-2-179126.mp3" id="3_cast_sfx"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/fireball-impact-351961.mp3" id="4_impact_sfx"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_projectile"]
+radius = 0.08
+
+[sub_resource type="SphereMesh" id="SphereMesh_projectile"]
+radius = 0.08
+height = 0.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_projectile"]
+albedo_color = Color(0.3, 0.8, 1.0, 1.0)
+emission_enabled = true
+emission = Color(0.3, 0.8, 1.0, 1.0)
+emission_energy = 1.3
+roughness = 0.0
+metallic = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trail"]
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.15
+scale_max = 0.25
+color = Color(1, 0.45, 0.05, 1)
+
+[node name="Projectile" type="Area3D"]
+script = ExtResource("1_projectile")
+speed = 40.0
+gravity_strength = 0.0
+max_lifetime = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_projectile")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_projectile")
+surface_material_override/0 = ExtResource("2_fireball_material")
+
+[node name="TrailParticles" type="GPUParticles3D" parent="."]
+amount = 64
+lifetime = 0.4
+emitting = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_trail")
+
+[node name="CastSfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_cast_sfx")
+
+[node name="ImpactSfx" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_impact_sfx")
+

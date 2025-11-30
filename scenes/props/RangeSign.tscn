@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sign_post"]
+size = Vector3(0.15, 2, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sign_board"]
+size = Vector3(1.5, 0.8, 0.1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_post"]
+radius = 0.075
+height = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_signboard"]
+size = Vector3(1.5, 0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_post"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+metallic = 0.2
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_signboard"]
+albedo_color = Color(0.85, 0.85, 0.8, 1)
+metallic = 0.0
+roughness = 0.9
+
+[node name="RangeSign" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_sign_post")
+
+[node name="Post" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_post")
+surface_material_override/0 = SubResource("StandardMaterial3D_post")
+
+[node name="Signboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0)
+mesh = SubResource("BoxMesh_signboard")
+surface_material_override/0 = SubResource("StandardMaterial3D_signboard")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0.06)
+billboard = 1
+text = "RANGE"
+font_size = 32
+outline_size = 8
+
+
+
+

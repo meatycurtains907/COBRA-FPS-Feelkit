@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sandbag_row"]
+size = Vector3(3, 0.6, 0.8)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sandbag1"]
+radius = 0.3
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sandbag2"]
+radius = 0.3
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sandbag3"]
+radius = 0.3
+height = 0.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sandbag4"]
+radius = 0.3
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sandbag"]
+albedo_color = Color(0.55, 0.45, 0.35, 1)
+metallic = 0.0
+roughness = 0.9
+
+[node name="SandbagRow" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("BoxShape3D_sandbag_row")
+
+[node name="Sandbag1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.25, 0)
+mesh = SubResource("CapsuleMesh_sandbag1")
+surface_material_override/0 = SubResource("StandardMaterial3D_sandbag")
+
+[node name="Sandbag2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.3, 0.3, 0)
+mesh = SubResource("CapsuleMesh_sandbag2")
+surface_material_override/0 = SubResource("StandardMaterial3D_sandbag")
+
+[node name="Sandbag3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.25, 0)
+mesh = SubResource("CapsuleMesh_sandbag3")
+surface_material_override/0 = SubResource("StandardMaterial3D_sandbag")
+
+[node name="Sandbag4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 1, 0.3, 0)
+mesh = SubResource("CapsuleMesh_sandbag4")
+surface_material_override/0 = SubResource("StandardMaterial3D_sandbag")
+
+
+
+

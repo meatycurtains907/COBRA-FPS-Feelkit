@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_barrel_cluster"]
+radius = 0.5
+height = 1.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel1"]
+radius = 0.4
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel2"]
+radius = 0.4
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel3"]
+radius = 0.4
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_barrel"]
+albedo_color = Color(0.35, 0.4, 0.35, 1)
+metallic = 0.3
+roughness = 0.8
+
+[node name="BarrelCluster" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_barrel_cluster")
+
+[node name="Barrel1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.5, 0)
+mesh = SubResource("CylinderMesh_barrel1")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrel")
+
+[node name="Barrel2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.5, 0)
+mesh = SubResource("CylinderMesh_barrel2")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrel")
+
+[node name="Barrel3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_barrel3")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrel")
+
+
+
+

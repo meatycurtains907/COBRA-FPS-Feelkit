@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/damageable.gd" id="1_damageable"]
+[ext_resource type="Resource" path="res://materials/Target_Front_Default.tres" id="2_target_front"]
+[ext_resource type="Resource" path="res://materials/Target_Base_Default.tres" id="3_target_base"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_plate"]
+size = Vector3(0.5, 1.5, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plate"]
+size = Vector3(0.5, 1.5, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+size = Vector3(0.6, 0.2, 0.4)
+
+[node name="Dummy" type="StaticBody3D"]
+script = ExtResource("1_damageable")
+max_health = 100.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("BoxShape3D_plate")
+
+[node name="Plate" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_plate")
+surface_material_override/0 = ExtResource("2_target_front")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_base")
+surface_material_override/0 = ExtResource("3_target_base")

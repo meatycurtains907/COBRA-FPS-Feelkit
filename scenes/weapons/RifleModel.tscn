@@ -1,0 +1,33 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Resource" path="res://materials/Weapon_Body_Default.tres" id="1_weapon_body"]
+[ext_resource type="Resource" path="res://materials/Weapon_Accent_Default.tres" id="2_weapon_accent"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_body"]
+size = Vector3(0.2, 0.25, 1.0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_barrel"]
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_stock"]
+size = Vector3(0.25, 0.3, 0.5)
+
+[node name="RifleModel" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_body")
+surface_material_override/0 = ExtResource("1_weapon_body")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.0)
+mesh = SubResource("CylinderMesh_barrel")
+surface_material_override/0 = ExtResource("2_weapon_accent")
+
+[node name="Stock" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+mesh = SubResource("BoxMesh_stock")
+surface_material_override/0 = ExtResource("1_weapon_body")
+

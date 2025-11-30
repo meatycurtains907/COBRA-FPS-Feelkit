@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/weapon_config.gd" id="1_weaponconfig"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/MuzzleFlash.tscn" id="2_muzzleflash"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/ImpactEffect.tscn" id="3_impacteffect"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/corrected gun shot.mp3" id="4_firesfx"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/gun-reload-2-395177.mp3" id="5_reloadsfx"]
+
+[resource]
+script = ExtResource("1_weaponconfig")
+display_name = "Demo Projectile Rifle"
+fire_mode = 0
+damage = 60.0
+fire_rate = 1.5
+mag_size = 5
+reload_time = 2.8
+hip_spread = 1.0
+ads_spread = 0.15
+spread_increase_per_shot = 0.15
+spread_decay_rate = 7.0
+recoil_pattern = Array[Vector2]([Vector2(0, -3.0), Vector2(0.12, -2.6), Vector2(-0.12, -2.4), Vector2(0, -2.2)])
+recoil_reset_speed = 8.0
+muzzle_flash_scene = ExtResource("2_muzzleflash")
+impact_effect_scene = ExtResource("3_impacteffect")
+fire_sfx = ExtResource("4_firesfx")
+reload_sfx = ExtResource("5_reloadsfx")
+
+
+

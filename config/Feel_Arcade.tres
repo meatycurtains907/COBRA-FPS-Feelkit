@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerFeelConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/player/player_feel_config.gd" id="1_playerfeelconfig"]
+
+[resource]
+script = ExtResource("1_playerfeelconfig")
+move_speed = 6.5
+sprint_speed = 10.0
+crouch_speed = 3.5
+jump_force = 4.5
+mouse_sensitivity = 0.14
+ads_sensitivity_multiplier = 0.75
+hip_fov = 80.0
+ads_fov = 60.0
+ads_fov_lerp_speed = 16.0
+recoil_scale = 0.7
+shake_scale = 0.5
+

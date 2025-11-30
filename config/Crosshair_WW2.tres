@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CrosshairConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud/crosshair_config.gd" id="1_crosshairconfig"]
+
+[resource]
+script = ExtResource("1_crosshairconfig")
+min_size = 10.0
+max_size = 26.0
+spread_weight = 0.6
+movement_weight = 0.4
+smooth_speed = 10.0
+base_color = Color(0.95, 0.92, 0.85, 1)
+hit_color = Color(0.4, 0.8, 0.4, 1)
+kill_color = Color(0.7, 0.25, 0.25, 1)
+show_hitmarker = true
+style = "ww2"
+

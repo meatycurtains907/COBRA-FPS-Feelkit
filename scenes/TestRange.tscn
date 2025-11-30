@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://b5sfoufkb1whj"]
+
+[ext_resource type="PackedScene" path="res://scenes/FeelPlayer.tscn" id="1_feelplayer"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="2_hud"]
+[ext_resource type="Resource" path="res://config/Crosshair_Twitchy.tres" id="5_crosshairtwitchy"]
+[ext_resource type="PackedScene" path="res://scenes/TrainingTarget.tscn" id="3_trainingtarget"]
+[ext_resource type="Script" uid="uid://dfkxrc6ar81si" path="res://scripts/test_range.gd" id="4_testrange"]
+[ext_resource type="Script" path="res://scripts/demo/feel_profile_manager.gd" id="6_feelprofilemanager"]
+[ext_resource type="PackedScene" path="res://scenes/demo/DebugOverlay.tscn" id="900_debug_overlay"]
+[ext_resource type="Resource" path="res://materials/Floor_Default.tres" id="11_floor_material"]
+[ext_resource type="Resource" path="res://materials/Wall_Default.tres" id="12_wall_material"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+
+[sub_resource type="Sky" id="Sky_testrange"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_testrange"]
+background_mode = 2
+sky = SubResource("Sky_testrange")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.6
+ambient_light_sky_contribution = 1.0
+fog_enabled = true
+fog_density = 0.002
+fog_sky_affect = 0.1
+fog_light_affect = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_backwall"]
+size = Vector3(20, 5, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_backwall"]
+size = Vector3(20, 5, 1)
+
+[node name="TestRange" type="Node3D"]
+script = ExtResource("4_testrange")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_testrange")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(50.0, 30.0, 0.0)
+light_color = Color(1.0, 0.97, 0.94, 1.0)
+light_energy = 1.6
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_floor")
+surface_material_override/0 = ExtResource("11_floor_material")
+
+[node name="BackWall" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -13)
+shape = SubResource("BoxShape3D_backwall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BackWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -13)
+mesh = SubResource("BoxMesh_backwall")
+surface_material_override/0 = ExtResource("12_wall_material")
+
+[node name="FeelPlayer" parent="." instance=ExtResource("1_feelplayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+crosshair_config = ExtResource("5_crosshairtwitchy")
+player_path = NodePath("FeelPlayer")
+
+[node name="DebugOverlay" parent="." instance=ExtResource("900_debug_overlay")]
+player_path = NodePath("FeelPlayer")
+profile_manager_path = NodePath("FeelProfileManager")
+
+[node name="FeelProfileManager" type="Node" parent="."]
+script = ExtResource("6_feelprofilemanager")
+player_path = NodePath("FeelPlayer")
+hud_path = NodePath("HUD")
+
+[node name="Dummy1" parent="." instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
+
+[node name="Dummy2" parent="." instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -8)
+
+[node name="Dummy3" parent="." instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
+
+[node name="Dummy4" parent="." instance=ExtResource("3_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)

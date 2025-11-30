@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scenes/vfx/impact_effect.gd" id="1_impact_script"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_impact"]
+size = Vector2(0.15, 0.15)
+
+[sub_resource type="StandardMaterial3D" id="Material_impact"]
+emission_enabled = true
+emission = Color(1, 0.6, 0.2, 1)
+albedo_color = Color(1, 0.8, 0.4, 1)
+
+[node name="ImpactEffect" type="Node3D"]
+script = ExtResource("1_impact_script")
+
+[node name="ImpactMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_impact")
+surface_material_override/0 = SubResource("Material_impact")
+
+[node name="ImpactLight" type="OmniLight3D" parent="."]
+light_energy = 2.0
+light_color = Color(1, 0.7, 0.3, 1)
+range = 1.5
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+one_shot = true
+wait_time = 0.3
+autostart = true

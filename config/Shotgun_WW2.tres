@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/weapon_config.gd" id="1_weaponconfig"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/MuzzleFlash.tscn" id="2_muzzleflash"]
+[ext_resource type="PackedScene" path="res://scenes/vfx/ImpactEffect.tscn" id="3_impacteffect"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/corrected gun shot.mp3" id="4_firesfx"]
+[ext_resource type="AudioStreamMP3" path="res://Sounds/gun-reload-2-395177.mp3" id="5_reloadsfx"]
+
+[resource]
+script = ExtResource("1_weaponconfig")
+display_name = "WW2 Trench Shotgun"
+fire_mode = 0
+damage = 11.0
+fire_rate = 0.9
+mag_size = 8
+reload_time = 3.0
+hip_spread = 7.0
+ads_spread = 4.0
+spread_increase_per_shot = 0.15
+spread_decay_rate = 6.0
+pellet_count = 8
+pellet_spread_scale = 4.0
+recoil_pattern = Array[Vector2]([Vector2(0.2, -6.5), Vector2(-0.15, -6.2), Vector2(0.25, -6.8), Vector2(-0.2, -6.0), Vector2(0.18, -7.0), Vector2(-0.22, -6.3), Vector2(0.2, -6.9), Vector2(-0.15, -6.1)])
+recoil_reset_speed = 6.0
+muzzle_flash_scene = ExtResource("2_muzzleflash")
+impact_effect_scene = ExtResource("3_impacteffect")
+fire_sfx = ExtResource("4_firesfx")
+reload_sfx = ExtResource("5_reloadsfx")
+

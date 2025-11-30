@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CrosshairConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud/crosshair_config.gd" id="1_crosshairconfig"]
+
+[resource]
+script = ExtResource("1_crosshairconfig")
+min_size = 6.0
+max_size = 24.0
+spread_weight = 0.8
+movement_weight = 0.2
+smooth_speed = 20.0
+base_color = Color(1, 1, 1, 1)
+hit_color = Color(0.2, 1, 0.2, 1)
+kill_color = Color(1, 0.2, 0.2, 1)
+show_hitmarker = true
+style = "cross"
+

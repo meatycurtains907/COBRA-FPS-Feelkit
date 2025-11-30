@@ -1,0 +1,561 @@
+[gd_scene load_steps=49 format=3 uid="uid://4la3x4tiacs7"]
+
+[ext_resource type="PackedScene" path="res://scenes/FeelPlayer.tscn" id="1_feelplayer"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="2_hud"]
+[ext_resource type="Script" uid="uid://bciaxbktnlitv" path="res://scripts/demo/ww2_bootcamp.gd" id="3_ww2bootcamp"]
+[ext_resource type="Script" uid="uid://cmyp11vwojma0" path="res://scripts/demo/armory_weapon_spot.gd" id="4_armoryspot"]
+[ext_resource type="Resource" path="res://config/Rifle_WW2.tres" id="5_rifleww2"]
+[ext_resource type="Resource" path="res://config/SMG_WW2.tres" id="6_smgww2"]
+[ext_resource type="Resource" path="res://config/Shotgun_WW2.tres" id="7_shotgunww2"]
+[ext_resource type="Script" uid="uid://bn1wlk0s83rsx" path="res://scripts/demo/bootcamp_course.gd" id="8_bootcampcourse"]
+[ext_resource type="PackedScene" path="res://scenes/TrainingTarget.tscn" id="9_trainingtarget"]
+[ext_resource type="Script" uid="uid://cvsn60ny1audc" path="res://scripts/demo/bootcamp_range.gd" id="10_bootcamprange"]
+[ext_resource type="Resource" path="res://config/Crosshair_WW2.tres" id="11_crosshairww2"]
+[ext_resource type="Script" uid="uid://dnnas0xvj4h8i" path="res://scripts/demo/feel_profile_manager.gd" id="12_feelprofilemanager"]
+[ext_resource type="Resource" path="res://config/Feel_WW2.tres" id="13_feelww2"]
+[ext_resource type="Script" uid="uid://b64gm0cfepvkv" path="res://scripts/demo/bootcamp_manager.gd" id="14_bootcampmanager"]
+[ext_resource type="PackedScene" path="res://scenes/props/SandbagRow.tscn" id="15_sandbagrow"]
+[ext_resource type="PackedScene" path="res://scenes/props/CrateStack.tscn" id="16_cratestack"]
+[ext_resource type="PackedScene" path="res://scenes/props/BarrelCluster.tscn" id="17_barrelcluster"]
+[ext_resource type="PackedScene" path="res://scenes/props/AmmoCrate.tscn" id="18_ammocrate"]
+[ext_resource type="PackedScene" path="res://scenes/props/RangeSign.tscn" id="19_rangesign"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_armory_floor"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_armory_floor"]
+size = Vector3(20, 0.5, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_armory_wall"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_armory_wall"]
+size = Vector3(20, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_armory_wall_east"]
+size = Vector3(4.5, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_armory_wall_east"]
+size = Vector3(4.5, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_armory_wall_west"]
+size = Vector3(4.5, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_armory_wall_west"]
+size = Vector3(4.5, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_table"]
+size = Vector3(2, 0.2, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
+albedo_color = Color(0.4, 0.3, 0.2, 1)
+metallic = 0.1
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_rack"]
+size = Vector3(0.15, 2.5, 0.15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_weapon_spot"]
+size = Vector3(1.5, 2, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yard_ground"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yard_ground"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_room_floor_static"]
+size = Vector3(30, 0.5, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_room_floor_static"]
+size = Vector3(30, 0.5, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_room_floor_course"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_room_floor_course"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_room_floor_movement"]
+size = Vector3(30, 0.5, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_room_floor_movement"]
+size = Vector3(30, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_30"]
+size = Vector3(30, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_30"]
+size = Vector3(30, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_50"]
+size = Vector3(50, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_50"]
+size = Vector3(50, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_narrow_30"]
+size = Vector3(0.5, 4, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_narrow_30"]
+size = Vector3(0.5, 4, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_narrow_40"]
+size = Vector3(0.5, 4, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_narrow_40"]
+size = Vector3(0.5, 4, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wall_narrow_50"]
+size = Vector3(0.5, 4, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall_narrow_50"]
+size = Vector3(0.5, 4, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yard_perimeter_short"]
+size = Vector3(22, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yard_perimeter_short"]
+size = Vector3(22, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yard_perimeter"]
+size = Vector3(50, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yard_perimeter"]
+size = Vector3(50, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yard_perimeter_narrow"]
+size = Vector3(0.5, 4, 48)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yard_perimeter_narrow"]
+size = Vector3(0.5, 4, 48)
+
+[sub_resource type="BoxMesh" id="BoxMesh_marker"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_marker"]
+albedo_color = Color(1, 0.8, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.8, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_station_trigger"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jump_barrier"]
+size = Vector3(3, 1.1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jump_barrier"]
+size = Vector3(3, 1.1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_barrier"]
+albedo_color = Color(0.6, 0.4, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_post"]
+size = Vector3(0.3, 2.5, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_post"]
+size = Vector3(0.3, 2.5, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_beam"]
+size = Vector3(3, 0.25, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_beam"]
+size = Vector3(3, 0.25, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_berm"]
+albedo_color = Color(0.7, 0.6, 0.5, 1)
+
+[node name="WW2Bootcamp" type="Node3D"]
+script = ExtResource("3_ww2bootcamp")
+
+[node name="PlayerSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+
+[node name="FeelPlayer" parent="PlayerSpawn" instance=ExtResource("1_feelplayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+feel_config = ExtResource("13_feelww2")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+crosshair_config = ExtResource("11_crosshairww2")
+
+[node name="FeelProfileManager" type="Node" parent="."]
+script = ExtResource("12_feelprofilemanager")
+player_path = NodePath("PlayerSpawn/FeelPlayer")
+hud_path = NodePath("HUD")
+
+[node name="Spawns" type="Node3D" parent="."]
+
+[node name="ArmorySpawn" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -40)
+
+[node name="RangeSpawn" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -40)
+
+[node name="BootcampManager" type="Node" parent="."]
+script = ExtResource("14_bootcampmanager")
+player_path = NodePath("PlayerSpawn/FeelPlayer")
+hud_path = NodePath("HUD")
+course_path = NodePath("Yard/MovementCourse")
+range_path = NodePath("Yard/Range")
+armory_spawn_path = NodePath("Spawns/ArmorySpawn")
+range_spawn_path = NodePath("Spawns/RangeSpawn")
+
+[node name="Armory" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -40)
+
+[node name="Floor" type="StaticBody3D" parent="Armory"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Floor"]
+shape = SubResource("BoxShape3D_armory_floor")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Floor"]
+mesh = SubResource("BoxMesh_armory_floor")
+
+[node name="Wall_North" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_North"]
+shape = SubResource("BoxShape3D_armory_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_North"]
+mesh = SubResource("BoxMesh_armory_wall")
+
+[node name="Wall_South_Left" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.5, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_South_Left"]
+shape = SubResource("BoxShape3D_armory_wall_east")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_South_Left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 0, 0)
+mesh = SubResource("BoxMesh_armory_wall_east")
+
+[node name="Wall_South_Right" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.5, 10)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_South_Right"]
+shape = SubResource("BoxShape3D_armory_wall_west")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_South_Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
+mesh = SubResource("BoxMesh_armory_wall_west")
+
+[node name="Wall_East_Left" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10, 1.5, -7)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_East_Left"]
+shape = SubResource("BoxShape3D_armory_wall_east")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_East_Left"]
+mesh = SubResource("BoxMesh_armory_wall_east")
+
+[node name="Wall_East_Right" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -10, 1.5, 7)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_East_Right"]
+shape = SubResource("BoxShape3D_armory_wall_east")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_East_Right"]
+mesh = SubResource("BoxMesh_armory_wall_east")
+
+[node name="Wall_West" type="StaticBody3D" parent="Armory"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 10, 1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/Wall_West"]
+shape = SubResource("BoxShape3D_armory_wall")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/Wall_West"]
+mesh = SubResource("BoxMesh_armory_wall")
+
+[node name="ArmoryDoorFrame" type="Node3D" parent="Armory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/ArmoryDoorFrame"]
+mesh = SubResource("BoxMesh_armory_wall_east")
+
+[node name="WeaponRacks" type="Node3D" parent="Armory"]
+
+[node name="Table1" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.5, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Table1"]
+mesh = SubResource("BoxMesh_table")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="Table2" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.5, -4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Table2"]
+mesh = SubResource("BoxMesh_table")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="Rack_East_1" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -4.75, 1.25, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Rack_East_1"]
+mesh = SubResource("BoxMesh_wall_rack")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="Rack_East_2" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -4.75, 1.25, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Rack_East_2"]
+mesh = SubResource("BoxMesh_wall_rack")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="Rack_West_1" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 4.75, 1.25, -2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Rack_West_1"]
+mesh = SubResource("BoxMesh_wall_rack")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="Rack_West_2" type="Node3D" parent="Armory/WeaponRacks"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 4.75, 1.25, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armory/WeaponRacks/Rack_West_2"]
+mesh = SubResource("BoxMesh_wall_rack")
+surface_material_override/0 = SubResource("StandardMaterial3D_table")
+
+[node name="WeaponSpots" type="Node3D" parent="Armory"]
+
+[node name="RifleSpot" type="Area3D" parent="Armory/WeaponSpots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1, -3.5)
+script = ExtResource("4_armoryspot")
+weapon_config = ExtResource("5_rifleww2")
+display_name = "WW2 Bolt Rifle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/WeaponSpots/RifleSpot"]
+shape = SubResource("BoxShape3D_weapon_spot")
+
+[node name="PromptLabel" type="Label3D" parent="Armory/WeaponSpots/RifleSpot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+billboard = 1
+text = "Press E to equip WW2 Bolt Rifle"
+outline_size = 8
+
+[node name="SMGSpot" type="Area3D" parent="Armory/WeaponSpots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3.5)
+script = ExtResource("4_armoryspot")
+weapon_config = ExtResource("6_smgww2")
+display_name = "WW2 SMG"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/WeaponSpots/SMGSpot"]
+shape = SubResource("BoxShape3D_weapon_spot")
+
+[node name="PromptLabel" type="Label3D" parent="Armory/WeaponSpots/SMGSpot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+billboard = 1
+text = "Press E to equip WW2 SMG"
+outline_size = 8
+
+[node name="ShotgunSpot" type="Area3D" parent="Armory/WeaponSpots"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1, -3.5)
+script = ExtResource("4_armoryspot")
+weapon_config = ExtResource("7_shotgunww2")
+display_name = "WW2 Trench Shotgun"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armory/WeaponSpots/ShotgunSpot"]
+shape = SubResource("BoxShape3D_weapon_spot")
+
+[node name="PromptLabel" type="Label3D" parent="Armory/WeaponSpots/ShotgunSpot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+billboard = 1
+text = "Press E to equip WW2 Trench Shotgun"
+outline_size = 8
+
+[node name="Yard" type="Node3D" parent="."]
+
+[node name="MovementCourse" type="Node3D" parent="Yard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 20)
+script = ExtResource("8_bootcampcourse")
+
+[node name="Station1_Walk" type="Node3D" parent="Yard/MovementCourse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+
+[node name="Marker" type="MeshInstance3D" parent="Yard/MovementCourse/Station1_Walk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_marker")
+surface_material_override/0 = SubResource("StandardMaterial3D_marker")
+
+[node name="Trigger" type="Area3D" parent="Yard/MovementCourse/Station1_Walk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station1_Walk/Trigger"]
+shape = SubResource("BoxShape3D_station_trigger")
+
+[node name="Station2_Jump" type="Node3D" parent="Yard/MovementCourse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="JumpBarrier" type="StaticBody3D" parent="Yard/MovementCourse/Station2_Jump"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station2_Jump/JumpBarrier"]
+shape = SubResource("BoxShape3D_jump_barrier")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Yard/MovementCourse/Station2_Jump/JumpBarrier"]
+mesh = SubResource("BoxMesh_jump_barrier")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrier")
+
+[node name="Trigger" type="Area3D" parent="Yard/MovementCourse/Station2_Jump"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station2_Jump/Trigger"]
+shape = SubResource("BoxShape3D_station_trigger")
+
+[node name="Station3_Crouch" type="Node3D" parent="Yard/MovementCourse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="Post_Left" type="StaticBody3D" parent="Yard/MovementCourse/Station3_Crouch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station3_Crouch/Post_Left"]
+shape = SubResource("BoxShape3D_post")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Yard/MovementCourse/Station3_Crouch/Post_Left"]
+mesh = SubResource("BoxMesh_post")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrier")
+
+[node name="Post_Right" type="StaticBody3D" parent="Yard/MovementCourse/Station3_Crouch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station3_Crouch/Post_Right"]
+shape = SubResource("BoxShape3D_post")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Yard/MovementCourse/Station3_Crouch/Post_Right"]
+mesh = SubResource("BoxMesh_post")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrier")
+
+[node name="Beam" type="StaticBody3D" parent="Yard/MovementCourse/Station3_Crouch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station3_Crouch/Beam"]
+shape = SubResource("BoxShape3D_beam")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Yard/MovementCourse/Station3_Crouch/Beam"]
+mesh = SubResource("BoxMesh_beam")
+surface_material_override/0 = SubResource("StandardMaterial3D_barrier")
+
+[node name="Trigger" type="Area3D" parent="Yard/MovementCourse/Station3_Crouch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Yard/MovementCourse/Station3_Crouch/Trigger"]
+shape = SubResource("BoxShape3D_station_trigger")
+
+[node name="Range" type="Node3D" parent="Yard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -40)
+script = ExtResource("10_bootcamprange")
+training_target_scene = ExtResource("9_trainingtarget")
+
+[node name="StaticRoom" type="Node3D" parent="Yard/Range"]
+
+[node name="Lane1" type="Node3D" parent="Yard/Range/StaticRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+
+[node name="LaneMarker" type="MeshInstance3D" parent="Yard/Range/StaticRoom/Lane1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_yard_ground")
+
+[node name="Target1" parent="Yard/Range/StaticRoom/Lane1" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Target2" parent="Yard/Range/StaticRoom/Lane1" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Target3" parent="Yard/Range/StaticRoom/Lane1" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Lane2" type="Node3D" parent="Yard/Range/StaticRoom"]
+
+[node name="LaneMarker" type="MeshInstance3D" parent="Yard/Range/StaticRoom/Lane2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_yard_ground")
+
+[node name="Target1" parent="Yard/Range/StaticRoom/Lane2" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Target2" parent="Yard/Range/StaticRoom/Lane2" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Target3" parent="Yard/Range/StaticRoom/Lane2" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="Lane3" type="Node3D" parent="Yard/Range/StaticRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="LaneMarker" type="MeshInstance3D" parent="Yard/Range/StaticRoom/Lane3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_yard_ground")
+
+[node name="Target1" parent="Yard/Range/StaticRoom/Lane3" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Target2" parent="Yard/Range/StaticRoom/Lane3" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="Target3" parent="Yard/Range/StaticRoom/Lane3" instance=ExtResource("9_trainingtarget")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+
+[node name="CourseRoom" type="Node3D" parent="Yard/Range"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 50)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Armory" type="Node3D" parent="Props"]
+
+[node name="CrateStack1" parent="Props/Armory" instance=ExtResource("16_cratestack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36, 0.6, -36)
+
+[node name="AmmoCrate1" parent="Props/Armory" instance=ExtResource("18_ammocrate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 0.25, -43)
+
+[node name="AmmoCrate2" parent="Props/Armory" instance=ExtResource("18_ammocrate")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 0.25, -43)
+
+[node name="BarrelCluster1" parent="Props/Armory" instance=ExtResource("17_barrelcluster")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 0.5, -31.5)
+
+[node name="Course" type="Node3D" parent="Props"]
+
+[node name="CrateStack2" parent="Props/Course" instance=ExtResource("16_cratestack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68, 0.6, 30)
+
+[node name="BarrelCluster2" parent="Props/Course" instance=ExtResource("17_barrelcluster")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52, 0.5, 32)
+
+[node name="RangeSign1" parent="Props/Course" instance=ExtResource("19_rangesign")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 40)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="Range" type="Node3D" parent="Props"]
+
+[node name="SandbagRow1" parent="Props/Range" instance=ExtResource("15_sandbagrow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -28)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="SandbagRow2" parent="Props/Range" instance=ExtResource("15_sandbagrow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -28)
+rotation_degrees = Vector3(0, 90, 0)
+
+[node name="CrateStack3" parent="Props/Range" instance=ExtResource("16_cratestack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0.6, -32)
+
+[node name="CrateStack4" parent="Props/Range" instance=ExtResource("16_cratestack")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.6, -32)
+
+[node name="BarrelCluster3" parent="Props/Range" instance=ExtResource("17_barrelcluster")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.5, -28)
+
+[node name="BarrelCluster4" parent="Props/Range" instance=ExtResource("17_barrelcluster")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5, -28)
+
+[node name="RangeSign2" parent="Props/Range" instance=ExtResource("19_rangesign")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -27)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 10, 0)
+light_color = Color(1, 0.95, 0.9, 1)
+light_energy = 0.9
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_max_distance = 50.0

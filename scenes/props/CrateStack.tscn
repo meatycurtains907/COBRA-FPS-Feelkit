@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_crate_stack"]
+size = Vector3(1.2, 1.2, 1.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate1"]
+size = Vector3(1, 0.6, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate2"]
+size = Vector3(1, 0.6, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_crate3"]
+size = Vector3(1, 0.6, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crate"]
+albedo_color = Color(0.4, 0.35, 0.3, 1)
+metallic = 0.0
+roughness = 0.85
+
+[node name="CrateStack" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("BoxShape3D_crate_stack")
+
+[node name="Crate1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_crate1")
+surface_material_override/0 = SubResource("StandardMaterial3D_crate")
+
+[node name="Crate2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("BoxMesh_crate2")
+surface_material_override/0 = SubResource("StandardMaterial3D_crate")
+
+[node name="Crate3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 1.5, 0)
+mesh = SubResource("BoxMesh_crate3")
+surface_material_override/0 = SubResource("StandardMaterial3D_crate")
+
+
+
+
