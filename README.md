@@ -40,14 +40,6 @@ COBRA is split into a few logical pieces:
   - Projectile/magic weapons, melee combos, block/parry UI, and the new dummy targets.
   - HUD title: "Magic & Melee Showcase"
 
-- **TestRange**
-  - Scene: `scenes/TestRange.tscn`
-  - Simple flat range with targets for sanity-checking weapons and damage.
-
-- **WW2 Bootcamp (optional / example content)**
-  - Scene: `scenes/demo/WW2Bootcamp.tscn`
-  - Extras built on top of COBRA: armory, obstacle course, themed props
-  - Treat this as inspiration, not as required infrastructure
 
 **If you only care about gunplay, you can ignore the MagicShowcase scene and magic preset configs entirely.**
 
