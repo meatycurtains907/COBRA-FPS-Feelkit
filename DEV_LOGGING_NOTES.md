@@ -25,3 +25,5 @@ This file documents intentional runtime warnings and any remaining noisy scripts
   - Contains noisy prints intended for internal testing and is not part of the supported surface.
   - Scripts include: `bootcamp_manager.gd`, `bootcamp_course.gd`, `bootcamp_range.gd`, `ww2_bootcamp.gd`, `armory_weapon_spot.gd`
 
+
+
