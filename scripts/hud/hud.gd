@@ -593,11 +593,11 @@ func set_mode_label(text: String) -> void:
 
 
 
-func set_stats_visible(is_visible: bool) -> void:
+func set_stats_visible(should_show: bool) -> void:
 
 	if stats_panel:
 
-		stats_panel.visible = is_visible
+		stats_panel.visible = should_show
 
 
 

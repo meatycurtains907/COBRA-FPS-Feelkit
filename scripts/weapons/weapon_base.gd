@@ -289,11 +289,6 @@ func _perform_shot() -> void:
 		if config and config.pellet_count > 1:
 			pellet_count = config.pellet_count
 		
-		if pellet_count > 1:
-			var base_spread: float = config.hip_spread if config else 0.0
-			if _is_ads and config:
-				base_spread = config.ads_spread
-		
 		for i in pellet_count:
 			_perform_single_pellet_hitscan(origin, base_direction, aim_basis)
 	else:
