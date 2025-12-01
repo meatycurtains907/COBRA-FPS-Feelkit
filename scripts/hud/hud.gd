@@ -593,6 +593,14 @@ func set_mode_label(text: String) -> void:
 
 
 
+func set_stats_visible(is_visible: bool) -> void:
+
+	if stats_panel:
+
+		stats_panel.visible = is_visible
+
+
+
 func reset_stats() -> void:
 
 	_shots_fired = 0
