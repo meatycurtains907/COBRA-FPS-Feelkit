@@ -45,6 +45,10 @@ func _ready() -> void:
 			_hud.set_title("FPS Feel Showcase")
 			_hud.set_mode_label("Mode: Gunplay & Movement")
 		
+		# Hide stats panel for clean feel showcase
+		if _hud and _hud.has_method("set_stats_visible"):
+			_hud.set_stats_visible(false)
+		
 		# Sync crosshair state for initial profile
 		if _profile_manager != null and _hud != null:
 			_on_profile_changed(_profile_manager.get_current_profile_name())

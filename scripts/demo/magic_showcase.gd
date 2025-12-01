@@ -55,6 +55,10 @@ func _ready() -> void:
 			_hud.set_title("Magic & Melee Showcase")
 			_hud.set_mode_label("Mode: Magic / Melee")
 		
+		# Hide stats panel for clean magic showcase
+		if _hud and _hud.has_method("set_stats_visible"):
+			_hud.set_stats_visible(false)
+		
 		# Cache HUD nodes and apply magic-specific overrides
 		if _hud:
 			_cache_magic_hud_nodes()
